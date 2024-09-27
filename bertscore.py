@@ -75,3 +75,20 @@ print(f">= 0.8 的比例: {percent_ge_08:.2f}%")
 
 # 结束提示
 print("\n所有统计分析已完成并已输出。")
+
+import pandas as pd
+from sklearn.metrics import precision_score, recall_score, accuracy_score
+
+# 读取Excel文件
+file_path = r'E:\Users\11851\Desktop\Y2024\11 VIVO\9月\0924 正负200条.xlsx' 
+df = pd.read_excel(file_path)
+
+# 提取第8列（准确值）和第9列（预估值）
+y_true = df.iloc[:, 4]  # Excel列是从0开始编号，第8列索引为7
+y_pred = df.iloc[:, 5]  # 第9列索引为8
+
+# 计算精确率、召回率和准确率
+accuracy = accuracy_score(y_true, y_pred)
+
+# 输出结果
+print(f"准确率: {accuracy:.4f}")
